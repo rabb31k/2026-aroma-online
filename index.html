@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (via CDN for single file portability) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -36,7 +36,9 @@
     </script>
 
     <!-- External Libs -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- html2canvas -->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
     <style>
@@ -57,7 +59,6 @@
       .animate-blob { animation: blob 7s infinite; }
       .animation-delay-2000 { animation-delay: 2s; }
       
-      /* Hide scrollbar for select but keep functionality */
       select {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -167,7 +168,8 @@
                 </div>
             </div>
 
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center animate-bounce">
+            <!-- Scroll Indicator: Fixed alignment -->
+            <div class="absolute bottom-8 left-0 w-full flex flex-col items-center animate-bounce text-white/50 z-20 pointer-events-none">
                 <span class="text-xs tracking-widest mb-2">向下探索</span>
                 <i data-lucide="chevron-down" class="w-6 h-6"></i>
             </div>
@@ -245,11 +247,11 @@
                                     <span class="text-yellow-800 font-bold text-sm md:text-base">土</span>
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
-                                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-400 flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="circle-dashed" class="w-6 h-6 md:w-8 md:h-8 text-yellow-900"></i></div>
+                                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-400 flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="diamond" class="w-6 h-6 md:w-8 md:h-8 text-yellow-900"></i></div>
                                     <span class="text-yellow-600 font-bold text-sm md:text-base">金</span>
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
-                                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-600 flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="droplets" class="w-6 h-6 md:w-8 md:h-8 text-white"></i></div>
+                                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-600 flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="droplet" class="w-6 h-6 md:w-8 md:h-8 text-white"></i></div>
                                     <span class="text-blue-800 font-bold text-sm md:text-base">水</span>
                                 </div>
                             </div>
@@ -259,8 +261,9 @@
                         <!-- Result Card Container (Hidden initially) -->
                         <div id="result-container" class="w-full flex flex-col items-center hidden animate-fade-in-up">
                             
-                            <!-- Card to Capture -->
-                            <div id="capture-card" class="relative w-full max-w-sm text-white rounded-[2rem] shadow-2xl overflow-hidden bg-stone-300" style="min-height: 600px;">
+                            <!-- Card to Capture (We will display this, and also screenshot it) -->
+                            <!-- Added id="capture-card" -->
+                            <div id="capture-card" class="relative w-full max-w-sm text-white rounded-[2rem] shadow-2xl overflow-hidden bg-stone-300 transition-all" style="min-height: 600px;">
                                 <!-- Header -->
                                 <div class="pt-8 pb-4 text-center px-6">
                                     <h2 class="text-lg font-medium opacity-90 tracking-widest mb-1">2026 台灣精油芳療年會</h2>
@@ -269,7 +272,7 @@
                                 <div class="w-full h-px bg-white/20 my-2"></div>
                                 
                                 <!-- Content -->
-                                <div class="p-8 flex flex-col items-center text-center">
+                                <div class="p-8 flex flex-col items-center text-center content-box">
                                     <div class="relative mb-6">
                                         <div class="w-24 h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30" id="res-icon-container">
                                             <!-- Icon here -->
@@ -293,20 +296,21 @@
                                 <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
                             </div>
 
-                            <!-- Generated Image Display Area -->
-                            <div id="generated-image-area" class="hidden flex-col items-center mt-4">
-                                <img id="final-image" src="" alt="Result" class="rounded-[2rem] shadow-2xl max-w-sm w-full" />
-                                <p class="mt-4 text-sm text-stone-500 animate-pulse">長按上方圖片即可儲存至相簿</p>
+                            <!-- Generated Image Display Area (Initially Hidden) -->
+                            <div id="generated-image-area" class="hidden flex-col items-center mt-0 w-full max-w-sm">
+                                <img id="final-image" src="" alt="Result" class="rounded-[2rem] shadow-2xl w-full" />
+                                <p class="mt-4 text-sm text-stone-500 animate-pulse text-center">
+                                    <span class="block md:hidden">長按上方圖片即可儲存至相簿</span>
+                                    <span class="hidden md:block">圖片已自動下載</span>
+                                </p>
                             </div>
 
                             <!-- Buttons -->
                             <div class="flex gap-4 mt-8">
-                                <button id="btn-generate" onclick="generateImage()" class="flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-white px-6 py-3 rounded-full transition-all shadow-lg">
-                                    <i data-lucide="save" class="w-4 h-4"></i> 生成圖片
+                                <button id="btn-save" onclick="generateAndSave()" class="flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-white px-6 py-3 rounded-full transition-all shadow-lg">
+                                    <i data-lucide="download" class="w-4 h-4"></i> 保存/下載結果
                                 </button>
-                                <button id="btn-download" onclick="downloadImage()" class="hidden items-center gap-2 bg-stone-800 hover:bg-stone-700 text-white px-6 py-3 rounded-full transition-all shadow-lg">
-                                    <i data-lucide="download" class="w-4 h-4"></i> 下載圖片
-                                </button>
+                                
                                 <button onclick="resetCalculator()" class="flex items-center gap-2 bg-white border border-stone-200 hover:bg-stone-50 text-stone-600 px-6 py-3 rounded-full transition-all shadow-md">
                                     <i data-lucide="refresh-cw" class="w-4 h-4"></i> 重新計算
                                 </button>
@@ -382,14 +386,14 @@
         // --- 1. Constants & Data ---
         const ELEMENT_MAPPING = {
             1: { element: "木", constitution: "氣鬱x血瘀", title: "開創者", description: "你是超級行動派，敢冒險、不服輸的開創先鋒。", colorClass: "bg-emerald-600", icon: "leaf" },
-            2: { element: "水", constitution: "陽虛x特稟", title: "協調者", description: "你是細膩的傾聽者，擅長在人際中成為潤滑劑。", colorClass: "bg-blue-600", icon: "droplets" },
+            2: { element: "水", constitution: "陽虛x特稟", title: "協調者", description: "你是細膩的傾聽者，擅長在人際中成為潤滑劑。", colorClass: "bg-blue-600", icon: "droplet" },
             3: { element: "火", constitution: "陰虛x濕熱", title: "協調者", description: "你用熱情點亮世界，擁有點燃氣氛的感染力。", colorClass: "bg-red-600", icon: "flame" },
             4: { element: "土", constitution: "氣虛x痰濕", title: "穩固者", description: "你是注重細節、務實可靠，能把理想落地的人。", colorClass: "bg-yellow-700", icon: "mountain" },
             5: { element: "火", constitution: "陰虛x濕熱", title: "探索者", description: "你對新鮮事物充滿好奇，勇於打破框架前行。", colorClass: "bg-red-600", icon: "flame" },
             6: { element: "土", constitution: "氣虛x痰濕", title: "照顧者", description: "你樂於照顧他人，是溫暖又包容的療癒存在。", colorClass: "bg-yellow-700", icon: "mountain" },
-            7: { element: "金", constitution: "氣虛x特稟", title: "思考者", description: "你善於冷靜分析與探索真理，是天生的洞察者。", colorClass: "bg-yellow-400 text-yellow-900", icon: "circle-dashed" }, // custom text color for metal
-            8: { element: "金", constitution: "氣虛x特稟", title: "實踐者", description: "你是統籌全局，化理想為現實的執行高手。", colorClass: "bg-yellow-400 text-yellow-900", icon: "circle-dashed" },
-            9: { element: "水", constitution: "陽虛x特稟", title: "奉獻者", description: "你有強烈的使命感，願為世界付出與療癒他人。", colorClass: "bg-blue-600", icon: "droplets" },
+            7: { element: "金", constitution: "氣虛x特稟", title: "思考者", description: "你善於冷靜分析與探索真理，是天生的洞察者。", colorClass: "bg-yellow-400 text-yellow-900", icon: "diamond" },
+            8: { element: "金", constitution: "氣虛x特稟", title: "實踐者", description: "你是統籌全局，化理想為現實的執行高手。", colorClass: "bg-yellow-400 text-yellow-900", icon: "diamond" },
+            9: { element: "水", constitution: "陽虛x特稟", title: "奉獻者", description: "你有強烈的使命感，願為世界付出與療癒他人。", colorClass: "bg-blue-600", icon: "droplet" },
         };
 
         const EXHIBITION_DATA = [
@@ -469,18 +473,17 @@
             document.getElementById('result-container').classList.remove('hidden');
             document.getElementById('result-container').classList.add('flex');
             
-            // Reset image state
-            document.getElementById('capture-card').classList.remove('hidden');
+            // Reset image state to "Show HTML Card"
+            const card = document.getElementById('capture-card');
+            card.classList.remove('hidden');
+            
             document.getElementById('generated-image-area').classList.remove('flex');
             document.getElementById('generated-image-area').classList.add('hidden');
-            document.getElementById('btn-generate').classList.remove('hidden');
-            document.getElementById('btn-download').classList.remove('flex'); // hidden
-            document.getElementById('btn-download').classList.add('hidden');
+            document.getElementById('btn-save').classList.remove('hidden'); // Show save button
 
             // Fill Data
-            const card = document.getElementById('capture-card');
             // Remove previous color classes
-            card.className = `relative w-full max-w-sm text-white rounded-[2rem] shadow-2xl overflow-hidden ${data.colorClass}`;
+            card.className = `relative w-full max-w-sm text-white rounded-[2rem] shadow-2xl overflow-hidden ${data.colorClass} transition-all`;
             
             document.getElementById('res-icon-container').innerHTML = `<i data-lucide="${data.icon}" class="w-12 h-12 ${data.colorClass.includes('text-yellow-900') ? 'text-yellow-900' : 'text-white'}"></i>`;
             document.getElementById('res-number').innerText = num;
@@ -502,55 +505,77 @@
         }
 
         // --- 4. Image Generation ---
-        async function generateImage() {
-            const btn = document.getElementById('btn-generate');
+        async function generateAndSave() {
+            const btn = document.getElementById('btn-save');
             const originalText = btn.innerHTML;
-            btn.innerText = "生成中...";
+            btn.innerHTML = "生成中...";
             btn.disabled = true;
 
-            const card = document.getElementById('capture-card');
+            const originalCard = document.getElementById('capture-card');
             
             try {
-                const canvas = await html2canvas(card, {
-                    scale: 2,
+                // 技術說明：
+                // 不直接截圖畫面上的元素(會導致手機版跑版或截圖不全)。
+                // 而是複製一個節點，放在螢幕外，設定固定寬度(500px)，確保所有裝置截圖結果一致且完美。
+                const clone = originalCard.cloneNode(true);
+                
+                // 設定複製體的樣式
+                clone.style.position = 'fixed';
+                clone.style.top = '-10000px'; // 移到螢幕外
+                clone.style.left = '0';
+                clone.style.width = '500px'; // 固定寬度，保證排版
+                clone.style.height = 'auto';
+                clone.style.zIndex = '-1000';
+                // 移除 max-w-sm 限制，改用我們設定的固定寬度
+                clone.classList.remove('max-w-sm'); 
+                clone.classList.add('w-[500px]');
+                
+                document.body.appendChild(clone);
+
+                // 等待一下確保 DOM 渲染
+                await new Promise(resolve => setTimeout(resolve, 50));
+
+                const canvas = await html2canvas(clone, {
+                    scale: 2, // 2x resolution
                     useCORS: true,
-                    backgroundColor: null
+                    backgroundColor: null,
+                    width: 500, // 告知 html2canvas 寬度
+                    windowWidth: 1200 // 模擬桌面環境
                 });
+                
+                // 移除複製體
+                document.body.removeChild(clone);
+
                 const imgData = canvas.toDataURL('image/png');
                 
-                // Show Image, Hide DOM Card (for cleaner download flow)
+                // UI 變更：隱藏原始卡片，顯示圖片
                 const img = document.getElementById('final-image');
                 img.src = imgData;
                 
-                card.classList.add('hidden');
+                originalCard.classList.add('hidden'); // 隱藏 HTML 卡片
+                
                 const imgArea = document.getElementById('generated-image-area');
                 imgArea.classList.remove('hidden');
                 imgArea.classList.add('flex');
 
-                // Swap buttons
-                btn.classList.add('hidden');
-                const downloadBtn = document.getElementById('btn-download');
-                downloadBtn.classList.remove('hidden');
-                downloadBtn.classList.add('flex');
+                btn.classList.add('hidden'); // 隱藏生成按鈕
+
+                // 自動觸發下載 (針對桌面版)
+                if (window.innerWidth > 768) {
+                    const link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = '2026-aroma-conference-result.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
 
             } catch (err) {
                 console.error(err);
-                alert("圖片生成失敗");
+                alert("圖片生成失敗，請稍後再試");
             } finally {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
-            }
-        }
-
-        function downloadImage() {
-            const img = document.getElementById('final-image');
-            if(img.src) {
-                const link = document.createElement('a');
-                link.href = img.src;
-                link.download = '2026-aroma-conference-result.png';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
             }
         }
 
