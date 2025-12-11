@@ -544,11 +544,51 @@
                          <button onclick="resetCalculator()" class="flex items-center gap-2 bg-white border border-stone-200 hover:bg-stone-50 text-stone-600 px-6 py-3 rounded-full transition-all shadow-md">
                             <i data-lucide="refresh-cw" class="w-4 h-4"></i> 重新計算
                         </button>
+                         <button onclick="downloadImage()" id="download-btn" class="flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-white px-6 py-3 rounded-full transition-all shadow-md">
+                            <i data-lucide="download" class="w-4 h-4"></i> 下載結果
+                        </button>
                     </div>
                 </div>
             `;
             container.innerHTML = html;
             lucide.createIcons();
+        }
+
+        function downloadImage() {
+            const card = document.getElementById('result-card');
+            const btn = document.getElementById('download-btn');
+            if (!card || !btn) return;
+
+            const originalContent = btn.innerHTML;
+            // Set loading state
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> 處理中`;
+            lucide.createIcons();
+            btn.disabled = true;
+
+            // Use html2canvas
+            html2canvas(card, {
+                scale: 3, // Higher resolution
+                useCORS: true, // Allow cross-origin images
+                backgroundColor: null, // Transparent background for rounded corners
+                logging: false
+            }).then(canvas => {
+                // Create download link
+                const link = document.createElement('a');
+                link.download = '2026-aromatherapy-element.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                // Restore button
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                lucide.createIcons();
+            }).catch(err => {
+                console.error('Download failed:', err);
+                alert('圖片生成失敗，請稍後再試。');
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                lucide.createIcons();
+            });
         }
 
         function resetCalculator() {
