@@ -560,35 +560,71 @@
             if (!card || !btn) return;
 
             const originalContent = btn.innerHTML;
-            // Set loading state
             btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> 處理中`;
             lucide.createIcons();
             btn.disabled = true;
 
-            // Use html2canvas
             html2canvas(card, {
-                scale: 3, // Higher resolution
-                useCORS: true, // Allow cross-origin images
-                backgroundColor: null, // Transparent background for rounded corners
+                scale: 3,
+                useCORS: true,
+                backgroundColor: null,
                 logging: false
             }).then(canvas => {
-                // Create download link
+                // 嘗試將 canvas 轉為 Blob
+                canvas.toBlob(function(blob) {
+                    if (!blob) {
+                        fallbackDownload(canvas, btn, originalContent);
+                        return;
+                    }
+
+                    // 檢查瀏覽器是否支援 Web Share API (通常手機支援)
+                    const file = new File([blob], "2026-aromatherapy-element.png", { type: "image/png" });
+                    
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        navigator.share({
+                            files: [file],
+                            title: '2026 台灣精油芳療年會',
+                            text: '我的五行能量分析結果'
+                        }).then(() => {
+                            // 分享成功
+                            resetBtn(btn, originalContent);
+                        }).catch((error) => {
+                            // 用戶取消分享或發生錯誤，若不是取消則嘗試傳統下載
+                            if (error.name !== 'AbortError') {
+                                fallbackDownload(canvas, btn, originalContent);
+                            } else {
+                                resetBtn(btn, originalContent);
+                            }
+                        });
+                    } else {
+                        // 電腦版或不支援 Share API，走傳統下載
+                        fallbackDownload(canvas, btn, originalContent);
+                    }
+                }, 'image/png');
+            }).catch(err => {
+                console.error('Download failed:', err);
+                alert('圖片生成失敗，請稍後再試。');
+                resetBtn(btn, originalContent);
+            });
+        }
+
+        function fallbackDownload(canvas, btn, originalContent) {
+            try {
                 const link = document.createElement('a');
                 link.download = '2026-aromatherapy-element.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
+            } catch (e) {
+                console.error(e);
+                alert("下載受阻，請長按圖片保存（若未顯示圖片請截圖）。");
+            }
+            resetBtn(btn, originalContent);
+        }
 
-                // Restore button
-                btn.innerHTML = originalContent;
-                btn.disabled = false;
-                lucide.createIcons();
-            }).catch(err => {
-                console.error('Download failed:', err);
-                alert('圖片生成失敗，請稍後再試。');
-                btn.innerHTML = originalContent;
-                btn.disabled = false;
-                lucide.createIcons();
-            });
+        function resetBtn(btn, originalContent) {
+            btn.innerHTML = originalContent;
+            btn.disabled = false;
+            lucide.createIcons();
         }
 
         function resetCalculator() {
