@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2026 台灣精油芳療年會 | 光影流芳 五行共生</title>
+    <title>2026 台灣精油芳療年會 | 光影流芳 玩轉五行</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,6 +67,15 @@
             animation: pulse-slow 3s infinite;
         }
 
+        /* Button Breathing Animation */
+        @keyframes button-breathe {
+            0%, 100% { filter: brightness(100%); }
+            50% { filter: brightness(120%); box-shadow: 0 0 15px rgba(245, 158, 11, 0.5); }
+        }
+        .animate-button-breathe {
+            animation: button-breathe 2s infinite ease-in-out;
+        }
+
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -92,15 +101,15 @@
             <div class="flex items-center space-x-2 cursor-pointer" onclick="scrollToSection('hero')">
                 <img src="https://img.shoplineapp.com/media/image_clips/693fd310ce43e58dabfdaa56/original.png?1765790479=&owner_id=5caf39294d91a10001727c79" alt="Logo" class="w-10 h-10 object-contain">
                 <div class="flex flex-col">
-                    <span class="font-serif text-lg font-bold leading-none tracking-widest">2026台灣精油芳療年會</span>
-                    <span class="text-[10px] tracking-wider opacity-80">Aromatherapy Annual Summit</span>
+                    <span class="font-serif text-lg lg:text-2xl font-bold leading-none tracking-widest">2026台灣精油芳療年會</span>
+                    <span class="text-[10px] lg:text-xs tracking-wider opacity-80">Aromatherapy Annual Summit</span>
                 </div>
             </div>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8">
-                <button onclick="scrollToSection('calculator')" class="hover:text-amber-400 transition-colors text-sm tracking-widest">生命靈數計算</button>
-                <button onclick="scrollToSection('exhibition')" class="hover:text-amber-400 transition-colors text-sm tracking-widest">線上展覽</button>
+                <button onclick="scrollToSection('calculator')" class="hover:text-amber-400 transition-colors text-sm lg:text-base tracking-widest">生命靈數計算</button>
+                <button onclick="scrollToSection('exhibition')" class="hover:text-amber-400 transition-colors text-sm lg:text-base tracking-widest">線上展覽</button>
             </div>
 
             <!-- Mobile Toggle -->
@@ -119,7 +128,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative w-full min-h-screen flex flex-col justify-start overflow-hidden bg-stone-900 pt-28 md:pt-32">
+    <section id="hero" class="relative w-full min-h-screen md:min-h-0 md:h-auto lg:h-screen flex flex-col justify-start md:justify-start lg:justify-center overflow-hidden bg-stone-900 pt-28 md:pt-32 lg:pt-0 pb-12 md:pb-48 lg:pb-0">
         <!-- Background -->
         <div class="absolute inset-0 z-0">
             <img src="https://img.shoplineapp.com/media/image_clips/693fc987366d70e3a42a157a/original.jpg?1765788039=&owner_id=5caf39294d91a10001727c79" alt="Background" class="w-full h-full object-cover opacity-60">
@@ -132,7 +141,7 @@
         </div>
 
         <!-- Content Container -->
-        <div class="relative z-10 container mx-auto px-6 md:px-12 lg:px-20 grid md:grid-cols-2 gap-12 items-center pb-48 md:pb-20">
+        <div class="relative z-10 container mx-auto px-6 md:px-12 lg:px-20 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             
             <!-- Left Column (Mobile: Top, Centered) -->
             <div class="space-y-8 animate-fade-in-up flex flex-col items-center md:items-start text-center md:text-left">
@@ -143,19 +152,19 @@
                         <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center border-2 border-stone-800"><i data-lucide="users" class="w-4 h-4 text-white"></i></div>
                         <div class="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center border-2 border-stone-800"><i data-lucide="user-plus" class="w-4 h-4 text-white"></i></div>
                     </div>
-                    <span class="text-white text-sm font-medium">已有 <span id="participant-count" class="text-amber-400 font-bold">0</span> 位芳療師參與體驗</span>
+                    <span class="text-white text-sm lg:text-base font-medium">已有 <span id="participant-count" class="text-amber-400 font-bold">0</span> 位芳療師參與體驗</span>
                 </div>
 
                 <!-- Title -->
                 <div class="space-y-4">
-                    <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-white font-bold leading-tight drop-shadow-lg">
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif text-white font-bold leading-tight drop-shadow-lg">
                         <span class="block mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-amber-100">光影流芳</span>
-                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-emerald-200">五行共生</span>
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-emerald-200">玩轉五行</span>
                     </h1>
                 </div>
 
                 <!-- CTA -->
-                <button onclick="scrollToSection('calculator')" class="group bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white px-8 py-4 rounded-full text-lg font-bold tracking-wider shadow-lg shadow-amber-900/50 transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-1">
+                <button onclick="scrollToSection('calculator')" class="group animate-button-breathe bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white px-8 py-4 rounded-full text-lg lg:text-xl xl:text-2xl font-bold tracking-wider shadow-lg shadow-amber-900/50 transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-1">
                     開始探索你的五行能量
                     <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
                 </button>
@@ -172,7 +181,7 @@
             <!-- Fixed position, no float animation -->
             <div class="hidden md:block animate-fade-in-up" style="animation-delay: 0.2s;">
                 <div class="glass-card p-8 rounded-3xl text-white/90 shadow-2xl max-w-md ml-auto">
-                    <p class="text-lg leading-relaxed font-light">
+                    <p class="text-lg lg:text-xl xl:text-2xl leading-relaxed font-light">
                         每個人都有專屬的五行能量密碼，透過生命靈數，找到你與精油的共振頻率。在光影交織中，感受<span class="text-el-wood font-bold">木的生發</span>、<span class="text-el-fire font-bold">火的熱情</span>、<span class="text-el-earth font-bold">土的穩定</span>、<span class="text-el-metal font-bold">金的收斂</span>、<span class="text-el-water font-bold">水的流動</span>。
                     </p>
                 </div>
@@ -180,7 +189,7 @@
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+        <div class="w-full flex justify-center md:absolute md:bottom-20 lg:bottom-8 md:left-1/2 md:-translate-x-1/2 z-20 mt-8 md:mt-0">
             <div class="flex flex-col items-center animate-bounce text-white/50">
                 <span class="text-xs tracking-widest mb-2">向下探索</span>
                 <i data-lucide="chevron-down" class="w-6 h-6"></i>
@@ -196,19 +205,20 @@
 
         <div class="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
             <div class="flex flex-col items-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-stone-800 mb-4 relative">生命靈數計算</h2>
+                <h2 class="text-6xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-serif text-stone-800 opacity-10 absolute top-[-40px] select-none">01</h2>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-stone-800 mb-4 relative">生命靈數計算</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-el-wood to-el-metal"></div>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12 lg:gap-24 items-start max-w-6xl mx-auto">
                 <!-- Form -->
                 <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl shadow-stone-200/50 border border-stone-100 sticky top-24">
-                    <h3 class="text-xl text-stone-600 mb-8 font-medium">請選擇您的西元出生日期</h3>
+                    <h3 class="text-xl lg:text-2xl text-stone-600 mb-8 font-medium">請選擇您的西元出生日期</h3>
                     <div class="space-y-6">
                         <div class="space-y-2">
-                            <label class="text-sm text-stone-500 font-medium tracking-wide">年份</label>
+                            <label class="text-sm lg:text-base text-stone-500 font-medium tracking-wide">年份</label>
                             <div class="relative">
-                                <select id="year-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-stone-700">
+                                <select id="year-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-stone-700 lg:text-lg">
                                     <option value="" disabled selected>選擇年份</option>
                                     <!-- Options populated by JS -->
                                 </select>
@@ -216,9 +226,9 @@
                             </div>
                         </div>
                         <div class="space-y-2">
-                            <label class="text-sm text-stone-500 font-medium tracking-wide">月份</label>
+                            <label class="text-sm lg:text-base text-stone-500 font-medium tracking-wide">月份</label>
                             <div class="relative">
-                                <select id="month-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-stone-700">
+                                <select id="month-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-stone-700 lg:text-lg">
                                     <option value="" disabled selected>選擇月份</option>
                                     <!-- Options populated by JS -->
                                 </select>
@@ -226,9 +236,9 @@
                             </div>
                         </div>
                         <div class="space-y-2">
-                            <label class="text-sm text-stone-500 font-medium tracking-wide">日期</label>
+                            <label class="text-sm lg:text-base text-stone-500 font-medium tracking-wide">日期</label>
                             <div class="relative">
-                                <select id="day-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-stone-700">
+                                <select id="day-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-stone-700 lg:text-lg">
                                     <option value="" disabled selected>選擇日期</option>
                                     <!-- Options populated by JS -->
                                 </select>
@@ -237,9 +247,11 @@
                         </div>
 
                         <!-- Button Changed to Orange Gradient -->
-                        <button onclick="calculateElement()" class="w-full bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg shadow-orange-900/20 mt-4">
+                        <button onclick="calculateElement()" class="w-full bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold py-4 rounded-full transition-all duration-300 shadow-lg shadow-orange-900/20 mt-4 text-lg lg:text-xl">
                             計算我的五行屬性
                         </button>
+                        <!-- Helper Text -->
+                        <p class="text-xs md:text-sm text-gray-400 text-center mt-3">計算結果將出現在右側或下方</p>
                     </div>
                 </div>
 
@@ -254,7 +266,7 @@
                             <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-metal flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="diamond" class="text-white"></i></div><span class="text-el-metal font-bold">金</span></div>
                             <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-water flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="droplet" class="text-white"></i></div><span class="text-el-water font-bold">水</span></div>
                         </div>
-                        <p class="text-xl text-stone-500 font-serif mt-4 text-center">選擇你的生日，開啟專屬五行之旅</p>
+                        <p class="text-xl lg:text-2xl text-stone-500 font-serif mt-4 text-center">選擇你的生日，開啟專屬五行之旅</p>
                     </div>
                 </div>
             </div>
@@ -265,13 +277,13 @@
     <section id="exhibition" class="py-24 bg-white">
         <div class="container mx-auto px-6 md:px-12 lg:px-20">
             <div class="text-center mb-20 space-y-4">
-                <span class="bg-amber-100 text-amber-800 px-4 py-1 rounded-full text-sm font-bold tracking-wider">線上展覽</span>
-                <h2 class="text-4xl md:text-6xl font-serif font-bold text-stone-800">
+                <span class="bg-amber-100 text-amber-800 px-4 py-1 rounded-full text-sm lg:text-base font-bold tracking-wider">線上展覽</span>
+                <h2 class="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-bold text-stone-800">
                     玩轉五行
                 </h2>
                 <!-- Centered Underline -->
                 <div class="w-24 h-1 bg-gradient-to-r from-el-wood to-el-metal mx-auto"></div>
-                <p class="text-stone-500 max-w-2xl mx-auto pt-4">
+                <p class="text-stone-500 text-lg lg:text-xl max-w-2xl mx-auto pt-4">
                     在線上也能完整的參與年會展覽。每個展區都對應不同的五行能量，循著五行流轉，探索專屬於你的身心節奏。
                 </p>
             </div>
@@ -287,30 +299,35 @@
         <div class="container mx-auto px-6 md:px-12 lg:px-20">
             <div class="grid md:grid-cols-4 gap-12 mb-12 border-b border-stone-800 pb-12">
                 <div class="col-span-1 md:col-span-2 space-y-4">
-                    <h3 class="text-white text-2xl font-serif">2026 台灣精油芳療年會</h3>
-                    <p class="text-sm leading-relaxed max-w-md">致力於推廣正統芳香療法，結合東方五行哲學與西方科學實證，為現代人尋找身心平衡的自然處方。</p>
+                    <h3 class="text-white text-2xl md:text-3xl lg:text-4xl font-serif">2026 台灣精油芳療年會</h3>
+                    <p class="text-sm md:text-base lg:text-lg leading-relaxed max-w-md">致力於推廣正統芳香療法，結合東方五行哲學與西方科學實證，為現代人尋找身心平衡的自然處方。</p>
                 </div>
                 <div class="space-y-4">
-                    <h4 class="text-white font-bold tracking-wider text-sm uppercase">快速連結</h4>
-                    <ul class="space-y-2 text-sm">
+                    <h4 class="text-white font-bold tracking-wider text-base md:text-lg lg:text-xl uppercase">快速連結</h4>
+                    <ul class="space-y-2 text-sm md:text-base lg:text-base">
                         <li><a href="#" class="hover:text-amber-500">年會限定優惠</a></li>
                         
                     </ul>
                 </div>
                 <div class="space-y-4">
-                    <h4 class="text-white font-bold tracking-wider text-sm uppercase">聯絡我們</h4>
+                    <h4 class="text-white font-bold tracking-wider text-base md:text-lg lg:text-xl uppercase">聯絡我們</h4>
                     <div class="flex space-x-4">
-                        <a href="https://www.facebook.com/ALIZTW" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                        <a href="https://www.instagram.com/aliz_aromacreator/" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                        <a href="https://www.aliztwshop.com/" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="globe" class="w-5 h-5"></i></a>
+                        <a href="https://www.facebook.com/ALIZTW" class="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="https://www.instagram.com/aliz_aromacreator/" class="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="https://www.aliztwshop.com/" class="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="globe" class="w-5 h-5"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="flex justify-between text-xs">
+            <div class="flex justify-between text-xs md:text-sm lg:text-sm">
                 <p>&copy; 2026 Taiwan Aromatherapy Conference.</p>
             </div>
         </div>
     </footer>
+    
+    <!-- Off-screen Container for Export -->
+    <div id="export-root" style="position: fixed; left: -9999px; top: 0; pointer-events: none;">
+        <div id="export-card"></div>
+    </div>
 
     <!-- Logic Script -->
     <script>
@@ -337,7 +354,7 @@
             {
                 id: 'fire',
                 title: "火 · 熱情之光",
-                subtitle: "包含：心火明辨｜數字反應遊戲",
+                subtitle: "包含：心之明辨｜數字反應遊戲",
                 tag: "火之展區",
                 color: "text-orange-100",
                 bgGradient: "from-el-fire to-red-900",
@@ -346,7 +363,7 @@
             {
                 id: 'earth',
                 title: "土 · 穩定之基",
-                subtitle: "包含：穩脾之力｜巧手分類遊戲",
+                subtitle: "包含：土之穩行｜指尖走線遊戲",
                 tag: "土之展區",
                 color: "text-yellow-100",
                 bgGradient: "from-el-earth to-amber-900",
@@ -355,7 +372,7 @@
             {
                 id: 'metal',
                 title: "金 · 收斂之質",
-                subtitle: "包含：清氣綿長｜出一口氣遊戲",
+                subtitle: "包含：金之綿長｜出一口氣遊戲",
                 tag: "金之展區",
                 color: "text-yellow-100",
                 bgGradient: "from-el-metal to-amber-800",
@@ -364,7 +381,7 @@
             {
                 id: 'water',
                 title: "水 · 流動之韻",
-                subtitle: "包含：水之定位｜金雞獨立遊戲",
+                subtitle: "包含：水之定力｜金雞獨立遊戲",
                 tag: "水之展區",
                 color: "text-blue-100",
                 bgGradient: "from-el-water to-blue-900",
@@ -387,6 +404,9 @@
 
         // Counter Logic
         const STORAGE_KEY = 'aliz_participant_count';
+        
+        // Global Data Store for Export
+        let currentResultData = null;
 
         // DOM Elements
         const navbar = document.getElementById('navbar');
@@ -510,17 +530,17 @@
         function renderExhibition() {
             const grid = document.getElementById('exhibition-grid');
             grid.innerHTML = EXHIBITION_DATA.map(item => `
-                <div class="group relative overflow-hidden rounded-[2rem] h-[500px] cursor-pointer shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                    <img src="${item.imageUrl}" alt="${item.title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t ${item.bgGradient} opacity-80 mix-blend-multiply transition-opacity duration-300 group-hover:opacity-90"></div>
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60"></div>
-                    <div class="absolute inset-0 p-8 flex flex-col justify-between">
+                <div class="group relative isolate overflow-hidden rounded-[2rem] h-[500px] cursor-pointer shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                    <img src="${item.imageUrl}" alt="${item.title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 rounded-[2rem]">
+                    <div class="absolute inset-0 bg-gradient-to-t ${item.bgGradient} opacity-80 mix-blend-multiply transition-opacity duration-300 group-hover:opacity-90 rounded-[2rem]"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60 rounded-[2rem]"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-between z-10">
                         <div class="flex justify-start">
-                            <span class="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold text-white tracking-widest uppercase border border-white/10">${item.tag}</span>
+                            <span class="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs lg:text-sm font-bold text-white tracking-widest uppercase border border-white/10">${item.tag}</span>
                         </div>
                         <div class="transform translate-y-4 transition-transform duration-500 group-hover:translate-y-0">
-                            <h3 class="text-4xl font-serif font-bold mb-2 ${item.color} drop-shadow-md">${item.title}</h3>
-                            <p class="text-white/80 text-lg mb-8 font-light tracking-wide">${item.subtitle}</p>
+                            <h3 class="text-4xl lg:text-5xl font-serif font-bold mb-2 ${item.color} drop-shadow-md">${item.title}</h3>
+                            <p class="text-white/80 text-lg lg:text-xl mb-8 font-light tracking-wide">${item.subtitle}</p>
                             <button class="flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 text-white px-6 py-3 rounded-full transition-all duration-300 group-hover:pl-8">
                                 進入體驗 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </button>
@@ -556,6 +576,7 @@
 
             const result = ELEMENT_MAPPING[sum];
             if (result) {
+                currentResultData = { ...result, number: sum }; // Save current data for export
                 displayResult(sum, result);
                 incrementParticipantCount(); // Increment counter on successful calculation
             }
@@ -572,15 +593,15 @@
                         <div class="pt-10 flex flex-col items-center">
                             <!-- Simulate ALIZ Logo -->
                             <div class="flex items-center gap-2 mb-2">
-                                 <span class="font-serif text-2xl font-bold tracking-[0.2em]">ALIZ</span>
+                                 <span class="font-serif text-2xl lg:text-3xl font-bold tracking-[0.2em]">ALIZ</span>
                             </div>
-                            <h2 class="text-xs font-light tracking-[0.2em] opacity-90 uppercase">2026 台灣精油芳療年會</h2>
+                            <h2 class="text-xs lg:text-sm font-light tracking-[0.2em] opacity-90 uppercase">2026 台灣精油芳療年會</h2>
                         </div>
 
                         <!-- 2. Life Path Number -->
                          <div class="mt-6">
                             <div class="inline-flex items-center justify-center px-5 py-1.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm">
-                                <span class="text-sm font-medium tracking-wider">生命靈數：<span class="font-bold text-lg font-serif">${number}</span></span>
+                                <span class="text-sm lg:text-base font-medium tracking-wider">生命靈數：<span class="font-bold text-lg lg:text-xl font-serif">${number}</span></span>
                             </div>
                         </div>
 
@@ -596,25 +617,25 @@
                         <!-- 4. Attributes -->
                         <div class="mt-8 text-center space-y-2">
                             <div class="flex items-center justify-center gap-2">
-                                <span class="opacity-80 font-light text-sm">五行屬性</span>
+                                <span class="opacity-80 font-light text-sm lg:text-base">五行屬性</span>
                                 <span class="w-1 h-1 bg-white/50 rounded-full"></span>
-                                <span class="text-xl font-bold font-serif tracking-widest">${data.element}</span>
+                                <span class="text-xl lg:text-2xl font-bold font-serif tracking-widest">${data.element}</span>
                             </div>
                             <div class="flex items-center justify-center gap-2">
-                                <span class="opacity-80 font-light text-sm">對應體質</span>
+                                <span class="opacity-80 font-light text-sm lg:text-base">對應體質</span>
                                 <span class="w-1 h-1 bg-white/50 rounded-full"></span>
-                                <span class="font-medium tracking-wide">${data.constitution}</span>
+                                <span class="font-medium lg:text-xl tracking-wide">${data.constitution}</span>
                             </div>
                         </div>
 
                         <!-- 5. Title -->
                         <div class="mt-6 text-center">
-                            <h1 class="text-4xl font-serif font-bold tracking-widest drop-shadow-md">${data.title}</h1>
+                            <h1 class="text-4xl lg:text-5xl font-serif font-bold tracking-widest drop-shadow-md">${data.title}</h1>
                         </div>
 
                         <!-- 6. Description -->
                         <div class="mt-6 mx-6 mb-12 p-5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
-                            <p class="text-center leading-loose font-light tracking-wide text-sm opacity-95">
+                            <p class="text-center leading-loose font-light tracking-wide text-sm lg:text-base opacity-95">
                                 ${data.description}
                             </p>
                         </div>
@@ -637,74 +658,164 @@
             lucide.createIcons();
         }
 
-        function downloadImage() {
-            const card = document.getElementById('result-card');
-            const btn = document.getElementById('download-btn');
-            if (!card || !btn) return;
+        // ============================================
+        //  Export Functionality (Off-screen Rendering)
+        // ============================================
+        
+        function renderExportCard(data) {
+            const container = document.getElementById('export-card');
+            // Reset classes
+            container.className = `relative w-[1080px] h-[1920px] ${data.color} text-white overflow-hidden flex flex-col items-center px-[80px] py-[100px] justify-between`;
+            
+            // Icon mapping for high-res is handled by lucide, we need to set width/height via class or attribute
+            container.innerHTML = `
+                <!-- Background Decoration -->
+                <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-[800px] h-[800px] bg-black/10 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-            const originalContent = btn.innerHTML;
-            btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> 處理中`;
-            lucide.createIcons();
-            btn.disabled = true;
+                <!-- Header -->
+                <div class="flex flex-col items-center w-full">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="font-serif text-[60px] font-bold tracking-[0.2em]">ALIZ</span>
+                    </div>
+                    <h2 class="text-[32px] font-light tracking-[0.3em] opacity-90 uppercase">2026 台灣精油芳療年會</h2>
+                </div>
 
-            html2canvas(card, {
-                scale: 3,
-                useCORS: true,
-                backgroundColor: null,
-                logging: false
-            }).then(canvas => {
-                // 嘗試將 canvas 轉為 Blob
-                canvas.toBlob(function(blob) {
-                    if (!blob) {
-                        fallbackDownload(canvas, btn, originalContent);
-                        return;
-                    }
-
-                    const file = new File([blob], "2026-aromatherapy-element.png", { type: "image/png" });
+                <!-- Main Content Group -->
+                <div class="flex flex-col items-center w-full gap-[60px] mt-10">
                     
-                    // 簡單判斷是否為行動裝置
-                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    <!-- Number Badge -->
+                    <div class="inline-flex items-center justify-center px-[60px] py-[20px] rounded-full border-[3px] border-white/30 bg-white/10 backdrop-blur-md">
+                        <span class="text-[40px] font-medium tracking-wider mr-4">生命靈數</span>
+                        <span class="font-bold text-[60px] font-serif">${data.number}</span>
+                    </div>
 
-                    // 只有在是行動裝置且支援分享檔案時才使用 Web Share API
-                    if (isMobile && navigator.canShare && navigator.canShare({ files: [file] })) {
-                        navigator.share({
-                            files: [file],
-                            title: '2026 台灣精油芳療年會',
-                            text: '我的五行能量分析結果'
-                        }).then(() => {
-                            // 分享成功
-                            resetBtn(btn, originalContent);
-                        }).catch((error) => {
-                            // 用戶取消分享或發生錯誤，若不是取消則嘗試傳統下載
-                            if (error.name !== 'AbortError') {
-                                fallbackDownload(canvas, btn, originalContent);
-                            } else {
-                                resetBtn(btn, originalContent);
-                            }
-                        });
-                    } else {
-                        // 電腦版直接下載
-                        fallbackDownload(canvas, btn, originalContent);
-                    }
-                }, 'image/png');
-            }).catch(err => {
-                console.error('Download failed:', err);
-                alert('圖片生成失敗，請稍後再試。');
-                resetBtn(btn, originalContent);
+                    <!-- Icon Circle -->
+                    <div class="relative w-[400px] h-[400px]">
+                        <div class="absolute inset-0 bg-white/20 blur-[60px] rounded-full"></div>
+                        <div class="relative w-full h-full rounded-full border-[6px] border-white/30 flex items-center justify-center bg-gradient-to-b from-white/10 to-transparent backdrop-blur-sm z-10">
+                             <i data-lucide="${data.icon}" width="200" height="200" class="text-white drop-shadow-2xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- Attributes Row -->
+                    <div class="flex items-center justify-center gap-[60px] w-full">
+                        <div class="flex flex-col items-center gap-2">
+                            <span class="opacity-80 font-light text-[32px]">五行屬性</span>
+                            <span class="text-[56px] font-bold font-serif tracking-widest">${data.element}</span>
+                        </div>
+                        <div class="w-[2px] h-[80px] bg-white/30"></div>
+                        <div class="flex flex-col items-center gap-2">
+                             <span class="opacity-80 font-light text-[32px]">對應體質</span>
+                             <span class="text-[48px] font-medium tracking-wide">${data.constitution}</span>
+                        </div>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-[100px] font-serif font-bold tracking-widest drop-shadow-lg text-center leading-tight">
+                        ${data.title}
+                    </h1>
+                </div>
+
+                <!-- Description Box -->
+                <div class="w-full p-[60px] bg-white/10 backdrop-blur-md rounded-[50px] border-[3px] border-white/20 mb-10">
+                    <p class="text-center leading-loose font-light tracking-wider text-[36px] opacity-95">
+                        ${data.description}
+                    </p>
+                </div>
+
+                <!-- Footer Copyright -->
+                <div class="text-[24px] font-light tracking-widest opacity-60">
+                    © 2026 Taiwan Aromatherapy Conference
+                </div>
+            `;
+            
+            // Re-render icons inside the export card
+            lucide.createIcons({
+                root: container,
+                attrs: {
+                    width: "200",
+                    height: "200"
+                }
             });
         }
 
-        function fallbackDownload(canvas, btn, originalContent) {
+        async function downloadImage() {
+            if (!currentResultData) return;
+            
+            const btn = document.getElementById('download-btn');
+            const originalContent = btn.innerHTML;
+            
+            // Set loading state
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> 處理中...`;
+            lucide.createIcons();
+            btn.disabled = true;
+
             try {
-                const link = document.createElement('a');
-                link.download = '2026-aromatherapy-element.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            } catch (e) {
-                console.error(e);
-                alert("下載受阻，請長按圖片保存（若未顯示圖片請截圖）。");
+                // 1. Prepare off-screen DOM
+                renderExportCard(currentResultData);
+                
+                // 2. Wait for fonts to load
+                await document.fonts.ready;
+                // Extra buffer to ensure rendering frames
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                const exportCard = document.getElementById('export-card');
+
+                // 3. Canvas generation with Scale: 2 as requested
+                const canvas = await html2canvas(exportCard, {
+                    scale: 2, // 2160x3840 output (High Res)
+                    useCORS: true,
+                    backgroundColor: null,
+                    logging: false,
+                    width: 1080,
+                    height: 1920
+                });
+
+                canvas.toBlob(async (blob) => {
+                     if (!blob) throw new Error("Blob generation failed");
+                     
+                     const file = new File([blob], "2026-aromatherapy-element.png", { type: "image/png" });
+
+                     // 4. Share or Download
+                     // Check for Web Share API support (Mobile)
+                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                         try {
+                             await navigator.share({
+                                 files: [file],
+                                 title: '2026 台灣精油芳療年會',
+                                 text: '我的五行能量分析結果'
+                             });
+                         } catch (err) {
+                             // User cancelled or other error, fallback to download only if not abort
+                             if (err.name !== 'AbortError') {
+                                 triggerDownload(blob);
+                             }
+                         }
+                     } else {
+                         // Desktop Fallback
+                         triggerDownload(blob);
+                     }
+                     
+                     resetBtn(btn, originalContent);
+                }, 'image/png');
+
+            } catch (err) {
+                console.error(err);
+                alert('圖片生成失敗，請稍後再試。');
+                resetBtn(btn, originalContent);
             }
-            resetBtn(btn, originalContent);
+        }
+
+        function triggerDownload(blob) {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = '2026-aromatherapy-element.png';
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
         }
 
         function resetBtn(btn, originalContent) {
@@ -717,6 +828,7 @@
             yearSelect.value = "";
             monthSelect.value = "";
             daySelect.value = "";
+            currentResultData = null; // Reset data
             
             // Restore Static Icons
             const container = document.getElementById('result-container');
@@ -729,7 +841,7 @@
                         <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-metal flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="diamond" class="text-white"></i></div><span class="text-el-metal font-bold">金</span></div>
                         <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-water flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="droplet" class="text-white"></i></div><span class="text-el-water font-bold">水</span></div>
                     </div>
-                    <p class="text-xl text-stone-500 font-serif mt-4 text-center">選擇你的生日，開啟專屬五行之旅</p>
+                    <p class="text-xl lg:text-2xl text-stone-500 font-serif mt-4 text-center">選擇你的生日，開啟專屬五行之旅</p>
                 </div>
             `;
             lucide.createIcons();
