@@ -90,9 +90,7 @@
         <div class="container mx-auto px-6 md:px-12 lg:px-20 flex justify-between items-center text-white">
             <!-- Logo -->
             <div class="flex items-center space-x-2 cursor-pointer" onclick="scrollToSection('hero')">
-                <div class="bg-gradient-to-tr from-yellow-400 to-amber-600 p-2 rounded-full">
-                    <i data-lucide="flower-2" class="w-6 h-6 text-white"></i>
-                </div>
+                <img src="https://img.shoplineapp.com/media/image_clips/693fd310ce43e58dabfdaa56/original.png?1765790479=&owner_id=5caf39294d91a10001727c79" alt="Logo" class="w-10 h-10 object-contain">
                 <div class="flex flex-col">
                     <span class="font-serif text-lg font-bold leading-none tracking-widest">2026台灣精油芳療年會</span>
                     <span class="text-[10px] tracking-wider opacity-80">Aromatherapy Annual Summit</span>
@@ -124,7 +122,7 @@
     <section id="hero" class="relative w-full min-h-screen flex flex-col justify-start overflow-hidden bg-stone-900 pt-28 md:pt-32">
         <!-- Background -->
         <div class="absolute inset-0 z-0">
-            <img src="https://picsum.photos/id/132/1920/1080" alt="Background" class="w-full h-full object-cover opacity-60">
+            <img src="https://img.shoplineapp.com/media/image_clips/693fc987366d70e3a42a157a/original.jpg?1765788039=&owner_id=5caf39294d91a10001727c79" alt="Background" class="w-full h-full object-cover opacity-60">
             <div class="absolute inset-0 bg-gradient-to-br from-stone-900 via-amber-900/40 to-emerald-900/60 mix-blend-overlay"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-stone-900/20 to-stone-900"></div>
             
@@ -134,7 +132,6 @@
         </div>
 
         <!-- Content Container -->
-        <!-- Adjusted padding: pb-48 for mobile to ensure text doesn't hit the scroll indicator -->
         <div class="relative z-10 container mx-auto px-6 md:px-12 lg:px-20 grid md:grid-cols-2 gap-12 items-center pb-48 md:pb-20">
             
             <!-- Left Column (Mobile: Top, Centered) -->
@@ -146,7 +143,7 @@
                         <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center border-2 border-stone-800"><i data-lucide="users" class="w-4 h-4 text-white"></i></div>
                         <div class="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center border-2 border-stone-800"><i data-lucide="user-plus" class="w-4 h-4 text-white"></i></div>
                     </div>
-                    <span class="text-white text-sm font-medium">已有 <span class="text-amber-400 font-bold">2,680</span> 位芳療師參與體驗</span>
+                    <span class="text-white text-sm font-medium">已有 <span id="participant-count" class="text-amber-400 font-bold">0</span> 位芳療師參與體驗</span>
                 </div>
 
                 <!-- Title -->
@@ -155,32 +152,28 @@
                         <span class="block mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-amber-100">光影流芳</span>
                         <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-emerald-200">五行共生</span>
                     </h1>
-                    <p class="text-lg sm:text-xl md:text-2xl text-amber-100/80 tracking-widest font-light">
-                        2026 台灣精油芳療年會
-                    </p>
                 </div>
 
-                <!-- CTA (Moved Up) -->
+                <!-- CTA -->
                 <button onclick="scrollToSection('calculator')" class="group bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white px-8 py-4 rounded-full text-lg font-bold tracking-wider shadow-lg shadow-amber-900/50 transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-1">
                     開始探索你的五行能量
                     <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
                 </button>
 
                 <!-- Description (Mobile Only) -->
-                <!-- Show only on mobile (md:hidden) -->
                 <div class="glass-card p-6 rounded-3xl text-white/90 shadow-2xl backdrop-blur-md border border-white/20 md:hidden w-full max-w-lg">
                     <p class="text-base leading-relaxed font-light">
-                        每個人都有專屬的五行能量密碼，透過生命靈數，找到你與精油的共振頻率。在光影交織中，感受<span class="text-emerald-300 font-medium">木的生發</span>、<span class="text-red-300 font-medium">火的熱情</span>、<span class="text-yellow-300 font-medium">土的穩定</span>、<span class="text-gray-300 font-medium">金的收斂</span>、<span class="text-blue-300 font-medium">水的流動</span>。
+                        每個人都有專屬的五行能量密碼，透過生命靈數，找到你與精油的共振頻率。在光影交織中，感受<span class="text-el-wood font-bold">木的生發</span>、<span class="text-el-fire font-bold">火的熱情</span>、<span class="text-el-earth font-bold">土的穩定</span>、<span class="text-el-metal font-bold">金的收斂</span>、<span class="text-el-water font-bold">水的流動</span>。
                     </p>
                 </div>
             </div>
 
             <!-- Right Column (Desktop Only) -->
-            <!-- Show only on desktop (hidden md:block) -->
+            <!-- Fixed position, no float animation -->
             <div class="hidden md:block animate-fade-in-up" style="animation-delay: 0.2s;">
-                <div class="glass-card p-8 rounded-3xl text-white/90 shadow-2xl max-w-md ml-auto transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                <div class="glass-card p-8 rounded-3xl text-white/90 shadow-2xl max-w-md ml-auto">
                     <p class="text-lg leading-relaxed font-light">
-                        每個人都有專屬的五行能量密碼，透過生命靈數，找到你與精油的共振頻率。在光影交織中，感受<span class="text-emerald-300 font-medium">木的生發</span>、<span class="text-red-300 font-medium">火的熱情</span>、<span class="text-yellow-300 font-medium">土的穩定</span>、<span class="text-gray-300 font-medium">金的收斂</span>、<span class="text-blue-300 font-medium">水的流動</span>。
+                        每個人都有專屬的五行能量密碼，透過生命靈數，找到你與精油的共振頻率。在光影交織中，感受<span class="text-el-wood font-bold">木的生發</span>、<span class="text-el-fire font-bold">火的熱情</span>、<span class="text-el-earth font-bold">土的穩定</span>、<span class="text-el-metal font-bold">金的收斂</span>、<span class="text-el-water font-bold">水的流動</span>。
                     </p>
                 </div>
             </div>
@@ -300,15 +293,15 @@
                     <h4 class="text-white font-bold tracking-wider text-sm uppercase">快速連結</h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="#" class="hover:text-amber-500">年會限定優惠</a></li>
-                        <li><a href="#" class="hover:text-amber-500">ALIZ官網</a></li>
+                        
                     </ul>
                 </div>
                 <div class="space-y-4">
                     <h4 class="text-white font-bold tracking-wider text-sm uppercase">聯絡我們</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="globe" class="w-5 h-5"></i></a>
+                        <a href="https://www.facebook.com/ALIZTW" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="https://www.instagram.com/aliz_aromacreator/" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="https://www.aliztwshop.com/" class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-600 hover:text-white"><i data-lucide="globe" class="w-5 h-5"></i></a>
                     </div>
                 </div>
             </div>
@@ -338,7 +331,7 @@
                 tag: "木之展區",
                 color: "text-emerald-100",
                 bgGradient: "from-el-wood to-emerald-800",
-                imageUrl: "https://img.shoplineapp.com/media/image_clips/6939a3813f52684d32c66f3b/original.jpg?1765385089=&owner_id=5caf39294d91a10001727c79" // Updated to User Provided URL
+                imageUrl: "https://img.shoplineapp.com/media/image_clips/6939a3813f52684d32c66f3b/original.jpg?1765385089=&owner_id=5caf39294d91a10001727c79"
             },
             {
                 id: 'fire',
@@ -347,7 +340,7 @@
                 tag: "火之展區",
                 color: "text-orange-100",
                 bgGradient: "from-el-fire to-red-900",
-                imageUrl: "https://img.shoplineapp.com/media/image_clips/6939a3872d2bf66a426ce590/original.jpg?1765385094=&owner_id=5caf39294d91a10001727c79" // Updated to User Provided URL
+                imageUrl: "https://img.shoplineapp.com/media/image_clips/6939a3872d2bf66a426ce590/original.jpg?1765385094=&owner_id=5caf39294d91a10001727c79"
             },
             {
                 id: 'earth',
@@ -356,7 +349,7 @@
                 tag: "土之展區",
                 color: "text-yellow-100",
                 bgGradient: "from-el-earth to-amber-900",
-                imageUrl: "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?auto=format&fit=crop&w=800&q=80" // Kept as Unsplash Mountain
+                imageUrl: "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 'metal',
@@ -365,7 +358,7 @@
                 tag: "金之展區",
                 color: "text-yellow-100",
                 bgGradient: "from-el-metal to-amber-800",
-                imageUrl: "https://img.shoplineapp.com/media/image_clips/6939a3961e5e75d00618cd98/original.jpg?1765385110=&owner_id=5caf39294d91a10001727c79" // Kept existing
+                imageUrl: "https://img.shoplineapp.com/media/image_clips/6939a3961e5e75d00618cd98/original.jpg?1765385110=&owner_id=5caf39294d91a10001727c79"
             },
             {
                 id: 'water',
@@ -374,7 +367,7 @@
                 tag: "水之展區",
                 color: "text-blue-100",
                 bgGradient: "from-el-water to-blue-900",
-                imageUrl: "https://img.shoplineapp.com/media/image_clips/6939a39d6dc52d7639694521/original.jpg?1765385116=&owner_id=5caf39294d91a10001727c79" // Updated to User Provided URL
+                imageUrl: "https://img.shoplineapp.com/media/image_clips/6939a39d6dc52d7639694521/original.jpg?1765385116=&owner_id=5caf39294d91a10001727c79"
             }
         ];
 
@@ -390,6 +383,9 @@
             9: { element: "水", constitution: "陽虛x特稟", title: "奉獻者", description: "你有強烈的使命感，願為世界付出與療癒他人。", color: "bg-el-water", icon: "droplets" }
         };
 
+        // Counter Logic
+        const STORAGE_KEY = 'aliz_participant_count';
+
         // DOM Elements
         const navbar = document.getElementById('navbar');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -403,6 +399,7 @@
             lucide.createIcons();
             populateDates();
             renderExhibition();
+            initParticipantCounter();
             
             // Scroll Listener
             window.addEventListener('scroll', () => {
@@ -429,6 +426,55 @@
             mobileMenu.classList.add('hidden');
             const el = document.getElementById(id);
             if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Counter Functions
+        function initParticipantCounter() {
+            // Get stored count or default to 0
+            const storedCount = localStorage.getItem(STORAGE_KEY);
+            const count = storedCount ? parseInt(storedCount) : 0;
+            
+            // Animate from 0 to current stored count
+            animateCounterValue(0, count, 2000);
+        }
+
+        function incrementParticipantCount() {
+            const storedCount = localStorage.getItem(STORAGE_KEY);
+            let count = storedCount ? parseInt(storedCount) : 0;
+            
+            // Increment
+            const prevCount = count;
+            count++;
+            
+            // Save
+            localStorage.setItem(STORAGE_KEY, count);
+            
+            // Animate only the increment
+            animateCounterValue(prevCount, count, 500);
+        }
+
+        function animateCounterValue(start, end, duration) {
+            const obj = document.getElementById('participant-count');
+            if (!obj) return;
+            
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                
+                // Calculate current value based on progress
+                const currentValue = Math.floor(progress * (end - start) + start);
+                
+                // Format with commas
+                obj.innerText = currentValue.toLocaleString();
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerText = end.toLocaleString(); // Ensure final value is exact
+                }
+            };
+            window.requestAnimationFrame(step);
         }
 
         // Populate Date Selects
@@ -509,6 +555,7 @@
             const result = ELEMENT_MAPPING[sum];
             if (result) {
                 displayResult(sum, result);
+                incrementParticipantCount(); // Increment counter on successful calculation
             }
         }
 
