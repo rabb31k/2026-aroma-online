@@ -530,7 +530,7 @@
         function renderExhibition() {
             const grid = document.getElementById('exhibition-grid');
             grid.innerHTML = EXHIBITION_DATA.map(item => `
-                <div class="group relative isolate overflow-hidden rounded-[2rem] h-[500px] cursor-pointer shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                <div class="group relative isolate overflow-hidden rounded-[2rem] h-[500px] cursor-pointer shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2" style="-webkit-tap-highlight-color: transparent;">
                     <img src="${item.imageUrl}" alt="${item.title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 rounded-[2rem]">
                     <div class="absolute inset-0 bg-gradient-to-t ${item.bgGradient} opacity-80 mix-blend-multiply transition-opacity duration-300 group-hover:opacity-90 rounded-[2rem]"></div>
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60 rounded-[2rem]"></div>
@@ -541,7 +541,7 @@
                         <div class="transform translate-y-4 transition-transform duration-500 group-hover:translate-y-0">
                             <h3 class="text-4xl lg:text-5xl font-serif font-bold mb-2 ${item.color} drop-shadow-md">${item.title}</h3>
                             <p class="text-white/80 text-lg lg:text-xl mb-8 font-light tracking-wide">${item.subtitle}</p>
-                            <button class="flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 text-white px-6 py-3 rounded-full transition-all duration-300 group-hover:pl-8">
+                            <button class="flex items-center gap-2 bg-white/20 hover:bg-white/30 active:bg-white/40 backdrop-blur-md border border-white/40 text-white px-6 py-3 rounded-full transition-all duration-300 group-hover:pl-8 outline-none focus:outline-none appearance-none" style="-webkit-tap-highlight-color: transparent;">
                                 進入體驗 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -584,14 +584,16 @@
 
         function displayResult(number, data) {
             const container = document.getElementById('result-container');
+            
+            // Format 'x' in constitution
+            const formattedConstitution = data.constitution.replace(/x/g, '<span class="font-sans mx-1 font-medium opacity-80">x</span>');
+
             const html = `
                 <div class="w-full flex flex-col items-center animate-fade-in-up">
                     <div id="result-card" class="relative w-full max-w-[360px] ${data.color} text-white rounded-[24px] shadow-2xl overflow-hidden flex flex-col items-center" style="min-height: 600px;">
 
                         <!-- 1. Logo & Event Name -->
-                        <!-- Removed the extra flower icon here -->
                         <div class="pt-10 flex flex-col items-center">
-                            <!-- Simulate ALIZ Logo -->
                             <div class="flex items-center gap-2 mb-2">
                                  <span class="font-serif text-2xl lg:text-3xl font-bold tracking-[0.2em]">ALIZ</span>
                             </div>
@@ -610,26 +612,28 @@
                             <div class="w-32 h-32 rounded-full border border-white/20 flex items-center justify-center relative z-10 bg-gradient-to-b from-white/10 to-transparent backdrop-blur-sm">
                                 <i data-lucide="${data.icon}" class="w-16 h-16 text-white drop-shadow-lg"></i>
                             </div>
-                            <!-- Decor glow -->
                             <div class="absolute inset-0 bg-white/20 blur-3xl rounded-full z-0"></div>
                         </div>
 
-                        <!-- 4. Attributes -->
-                        <div class="mt-8 text-center space-y-2">
-                            <div class="flex items-center justify-center gap-2">
-                                <span class="opacity-80 font-light text-sm lg:text-base">五行屬性</span>
-                                <span class="w-1 h-1 bg-white/50 rounded-full"></span>
-                                <span class="text-xl lg:text-2xl font-bold font-serif tracking-widest">${data.element}</span>
-                            </div>
-                            <div class="flex items-center justify-center gap-2">
-                                <span class="opacity-80 font-light text-sm lg:text-base">對應體質</span>
-                                <span class="w-1 h-1 bg-white/50 rounded-full"></span>
-                                <span class="font-medium lg:text-xl tracking-wide">${data.constitution}</span>
+                        <!-- 4. Attributes (Aligned) -->
+                        <div class="mt-8 w-full px-4">
+                            <div class="flex items-start justify-center">
+                                <!-- Element Side -->
+                                <div class="flex flex-col items-center justify-start w-1/2 px-1">
+                                    <span class="opacity-80 font-light text-sm lg:text-base mb-3 tracking-widest">五行屬性</span>
+                                    <span class="text-2xl lg:text-3xl font-serif font-bold tracking-widest leading-none">${data.element}</span>
+                                </div>
+                                
+                                <!-- Constitution Side -->
+                                <div class="flex flex-col items-center justify-start w-1/2 px-1">
+                                    <span class="opacity-80 font-light text-sm lg:text-base mb-3 tracking-widest">對應體質</span>
+                                    <span class="text-2xl lg:text-3xl font-serif font-bold tracking-wide leading-none whitespace-nowrap">${formattedConstitution}</span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- 5. Title -->
-                        <div class="mt-6 text-center">
+                        <div class="mt-8 text-center">
                             <h1 class="text-4xl lg:text-5xl font-serif font-bold tracking-widest drop-shadow-md">${data.title}</h1>
                         </div>
 
@@ -664,10 +668,12 @@
         
         function renderExportCard(data) {
             const container = document.getElementById('export-card');
-            // Reset classes
+            
+            // Format 'x'
+            const formattedConstitution = data.constitution.replace(/x/g, '<span class="font-sans mx-2 font-medium opacity-80">x</span>');
+
             container.className = `relative w-[1080px] h-[1920px] ${data.color} text-white overflow-hidden flex flex-col items-center px-[80px] py-[100px] justify-between`;
             
-            // Icon mapping for high-res is handled by lucide, we need to set width/height via class or attribute
             container.innerHTML = `
                 <!-- Background Decoration -->
                 <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -698,16 +704,18 @@
                         </div>
                     </div>
 
-                    <!-- Attributes Row -->
-                    <div class="flex items-center justify-center gap-[60px] w-full">
-                        <div class="flex flex-col items-center gap-2">
-                            <span class="opacity-80 font-light text-[32px]">五行屬性</span>
-                            <span class="text-[56px] font-bold font-serif tracking-widest">${data.element}</span>
+                    <!-- Attributes Row (Aligned) -->
+                    <div class="flex items-start justify-center w-full mt-[40px] px-[20px]">
+                        <!-- Element Side -->
+                        <div class="flex flex-col items-center justify-start w-1/2 px-[20px]">
+                            <span class="opacity-90 font-light text-[36px] mb-[20px] tracking-widest">五行屬性</span>
+                            <span class="text-[80px] font-serif font-bold tracking-widest leading-none mt-2">${data.element}</span>
                         </div>
-                        <div class="w-[2px] h-[80px] bg-white/30"></div>
-                        <div class="flex flex-col items-center gap-2">
-                             <span class="opacity-80 font-light text-[32px]">對應體質</span>
-                             <span class="text-[48px] font-medium tracking-wide">${data.constitution}</span>
+
+                        <!-- Constitution Side -->
+                        <div class="flex flex-col items-center justify-start w-1/2 px-[20px]">
+                             <span class="opacity-90 font-light text-[36px] mb-[20px] tracking-widest">對應體質</span>
+                             <span class="text-[80px] font-serif font-bold tracking-wide leading-none mt-2 whitespace-nowrap">${formattedConstitution}</span>
                         </div>
                     </div>
 
@@ -730,13 +738,9 @@
                 </div>
             `;
             
-            // Re-render icons inside the export card
             lucide.createIcons({
                 root: container,
-                attrs: {
-                    width: "200",
-                    height: "200"
-                }
+                attrs: { width: "200", height: "200" }
             });
         }
 
@@ -777,9 +781,16 @@
                      
                      const file = new File([blob], "2026-aromatherapy-element.png", { type: "image/png" });
 
-                     // 4. Share or Download
-                     // Check for Web Share API support (Mobile)
-                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                     // 4. Share or Download Logic
+                     // User Request: Desktop/Tablet -> Download. Mobile Phone -> Share.
+                     
+                     // Detection:
+                     // iOS: iPhone/iPod = Phone. iPad = Tablet.
+                     // Android: "Mobile" token usually indicates Phone. Absence often indicates Tablet.
+                     const isMobilePhone = /iPhone|iPod|Android.*Mobile/i.test(navigator.userAgent);
+
+                     // Only use Web Share API if it's a Mobile Phone AND browser supports it
+                     if (isMobilePhone && navigator.canShare && navigator.canShare({ files: [file] })) {
                          try {
                              await navigator.share({
                                  files: [file],
@@ -793,7 +804,7 @@
                              }
                          }
                      } else {
-                         // Desktop Fallback
+                         // Desktop, Tablet, or unsupported browsers -> Direct Download
                          triggerDownload(blob);
                      }
                      
