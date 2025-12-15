@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (CDN for standalone usage) -->
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Lucide Icons (CDN) -->
@@ -196,7 +196,6 @@
 
         <div class="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
             <div class="flex flex-col items-center mb-16">
-                <h2 class="text-6xl md:text-9xl font-serif text-stone-800 opacity-10 absolute top-[-40px] select-none">01</h2>
                 <h2 class="text-4xl md:text-5xl font-serif font-bold text-stone-800 mb-4 relative">生命靈數計算</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-el-wood to-el-metal"></div>
             </div>
@@ -209,7 +208,7 @@
                         <div class="space-y-2">
                             <label class="text-sm text-stone-500 font-medium tracking-wide">年份</label>
                             <div class="relative">
-                                <select id="year-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-el-wood text-stone-700">
+                                <select id="year-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-stone-700">
                                     <option value="" disabled selected>選擇年份</option>
                                     <!-- Options populated by JS -->
                                 </select>
@@ -219,7 +218,7 @@
                         <div class="space-y-2">
                             <label class="text-sm text-stone-500 font-medium tracking-wide">月份</label>
                             <div class="relative">
-                                <select id="month-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-el-wood text-stone-700">
+                                <select id="month-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-stone-700">
                                     <option value="" disabled selected>選擇月份</option>
                                     <!-- Options populated by JS -->
                                 </select>
@@ -229,7 +228,7 @@
                         <div class="space-y-2">
                             <label class="text-sm text-stone-500 font-medium tracking-wide">日期</label>
                             <div class="relative">
-                                <select id="day-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-el-wood text-stone-700">
+                                <select id="day-select" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-stone-700">
                                     <option value="" disabled selected>選擇日期</option>
                                     <!-- Options populated by JS -->
                                 </select>
@@ -237,7 +236,8 @@
                             </div>
                         </div>
 
-                        <button onclick="calculateElement()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg shadow-emerald-900/20 mt-4">
+                        <!-- Button Changed to Orange Gradient -->
+                        <button onclick="calculateElement()" class="w-full bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg shadow-orange-900/20 mt-4">
                             計算我的五行屬性
                         </button>
                     </div>
@@ -252,7 +252,7 @@
                             <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-fire flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="flame" class="text-white"></i></div><span class="text-el-fire font-bold">火</span></div>
                             <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-earth flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="mountain" class="text-white"></i></div><span class="text-el-earth font-bold">土</span></div>
                             <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-metal flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="diamond" class="text-white"></i></div><span class="text-el-metal font-bold">金</span></div>
-                            <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-water flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="droplets" class="text-white"></i></div><span class="text-el-water font-bold">水</span></div>
+                            <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-water flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="droplet" class="text-white"></i></div><span class="text-el-water font-bold">水</span></div>
                         </div>
                         <p class="text-xl text-stone-500 font-serif mt-4 text-center">選擇你的生日，開啟專屬五行之旅</p>
                     </div>
@@ -267,9 +267,10 @@
             <div class="text-center mb-20 space-y-4">
                 <span class="bg-amber-100 text-amber-800 px-4 py-1 rounded-full text-sm font-bold tracking-wider">線上展覽</span>
                 <h2 class="text-4xl md:text-6xl font-serif font-bold text-stone-800">
-                    玩轉五行<br/>
-                    <span class="text-stone-600 italic text-3xl md:text-5xl mt-2 block">沉浸式五行體驗</span>
+                    玩轉五行
                 </h2>
+                <!-- Centered Underline -->
+                <div class="w-24 h-1 bg-gradient-to-r from-el-wood to-el-metal mx-auto"></div>
                 <p class="text-stone-500 max-w-2xl mx-auto pt-4">
                     在線上也能完整的參與年會展覽。每個展區都對應不同的五行能量，循著五行流轉，探索專屬於你的身心節奏。
                 </p>
@@ -371,16 +372,17 @@
             }
         ];
 
+        // Mapped 'icon' for Water to 'droplet' instead of 'droplets'
         const ELEMENT_MAPPING = {
             1: { element: "木", constitution: "氣鬱x血瘀", title: "開創者", description: "你是超級行動派，敢冒險、不服輸的開創先鋒。", color: "bg-el-wood", icon: "leaf" },
-            2: { element: "水", constitution: "陽虛x特稟", title: "協調者", description: "你是細膩的傾聽者，擅長在人際中成為潤滑劑。", color: "bg-el-water", icon: "droplets" },
+            2: { element: "水", constitution: "陽虛x特稟", title: "協調者", description: "你是細膩的傾聽者，擅長在人際中成為潤滑劑。", color: "bg-el-water", icon: "droplet" },
             3: { element: "火", constitution: "陰虛x濕熱", title: "協調者", description: "你用熱情點亮世界，擁有點燃氣氛的感染力。", color: "bg-el-fire", icon: "flame" },
             4: { element: "土", constitution: "氣虛x痰濕", title: "穩固者", description: "你是注重細節、務實可靠，能把理想落地的人。", color: "bg-el-earth", icon: "mountain" },
             5: { element: "火", constitution: "陰虛x濕熱", title: "探索者", description: "你對新鮮事物充滿好奇，勇於打破框架前行。", color: "bg-el-fire", icon: "flame" },
             6: { element: "土", constitution: "氣虛x痰濕", title: "照顧者", description: "你樂於照顧他人，是溫暖又包容的療癒存在。", color: "bg-el-earth", icon: "mountain" },
             7: { element: "金", constitution: "氣虛x特稟", title: "思考者", description: "你善於冷靜分析與探索真理，是天生的洞察者。", color: "bg-el-metal", icon: "diamond" },
             8: { element: "金", constitution: "氣虛x特稟", title: "實踐者", description: "你是統籌全局，化理想為現實的執行高手。", color: "bg-el-metal", icon: "diamond" },
-            9: { element: "水", constitution: "陽虛x特稟", title: "奉獻者", description: "你有強烈的使命感，願為世界付出與療癒他人。", color: "bg-el-water", icon: "droplets" }
+            9: { element: "水", constitution: "陽虛x特稟", title: "奉獻者", description: "你有強烈的使命感，願為世界付出與療癒他人。", color: "bg-el-water", icon: "droplet" }
         };
 
         // Counter Logic
@@ -566,12 +568,10 @@
                     <div id="result-card" class="relative w-full max-w-[360px] ${data.color} text-white rounded-[24px] shadow-2xl overflow-hidden flex flex-col items-center" style="min-height: 600px;">
 
                         <!-- 1. Logo & Event Name -->
+                        <!-- Removed the extra flower icon here -->
                         <div class="pt-10 flex flex-col items-center">
                             <!-- Simulate ALIZ Logo -->
                             <div class="flex items-center gap-2 mb-2">
-                                 <div class="bg-white text-${data.color.replace('bg-', '')} p-1.5 rounded-full">
-                                    <i data-lucide="flower-2" class="w-5 h-5"></i>
-                                 </div>
                                  <span class="font-serif text-2xl font-bold tracking-[0.2em]">ALIZ</span>
                             </div>
                             <h2 class="text-xs font-light tracking-[0.2em] opacity-90 uppercase">2026 台灣精油芳療年會</h2>
@@ -727,7 +727,7 @@
                         <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-fire flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="flame" class="text-white"></i></div><span class="text-el-fire font-bold">火</span></div>
                         <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-earth flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="mountain" class="text-white"></i></div><span class="text-el-earth font-bold">土</span></div>
                         <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-metal flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="diamond" class="text-white"></i></div><span class="text-el-metal font-bold">金</span></div>
-                        <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-water flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="droplets" class="text-white"></i></div><span class="text-el-water font-bold">水</span></div>
+                        <div class="flex flex-col items-center gap-2"><div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-el-water flex items-center justify-center shadow-lg border-2 border-white"><i data-lucide="droplet" class="text-white"></i></div><span class="text-el-water font-bold">水</span></div>
                     </div>
                     <p class="text-xl text-stone-500 font-serif mt-4 text-center">選擇你的生日，開啟專屬五行之旅</p>
                 </div>
